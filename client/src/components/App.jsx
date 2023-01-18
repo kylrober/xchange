@@ -2,6 +2,7 @@ import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import Auth from './Auth';
 import Profile from './ProfilePage';
+import Map1 from './SearchPage/Map'
 import PendingTrades from './ProfilePage/PendingTrades.jsx';
 import $ from 'jquery';
 
@@ -30,9 +31,11 @@ export default function App() {
         changeView('Profile', { user, changeView });
         break;
       case 'Profile':
-        return <Profile props={view.props} />;
+        return <Profile changeView={changeView} props={view.props} />;
       default:
         return null;
+
+
     }
     return null;
   };

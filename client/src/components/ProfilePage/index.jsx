@@ -6,7 +6,7 @@ import BookmarkedItems from './BookmarkedItems'
 import AddItem from './AddItem';
 import { styled } from '@mui/system';
 import axios from 'axios';
-
+///
 
 
 const PictureContainer = styled('div')({
@@ -28,33 +28,42 @@ const Box1 = styled('div')({
   display: 'flex',
   flexDirection: 'column' ,
   justifyContent: 'center',
-  // boxShadow: `-5px -5px 10px rgba(232,242,255,0.8),
-  // 5px 5px 10px rgba(0,0,0,0.25)`,
-  // borderRadius: '30px;',
+
   marginBottom: '20px'
+});
+const Box2 = styled('div')({
+  backgroundColor: '#CAF0F8',
+  alignContent: 'center',
+  flexWrap: 'wrap',
+  display: 'flex',
+  flexDirection: 'column' ,
+  justifyContent: 'center',
+  textAlign: 'center',
+  color: '#505050',
+
 });
 const avatarSX = {
   marginBottom:'10px',
-  boxShadow: `-8px -8px 12px rgba(232,242,255,0.8),
-  8px 8px 12px rgba(0,0,0,0.25),
+  boxShadow: `-10px -10px 14px rgba(232,242,255,0.8),
+  10px 10px 14px rgba(0,0,0,0.3),
   inset -2px -2px 5px rgba(255,255,255,0.6),
   inset 2px 2px 4px rgba(0,0,0,0.3)`,
   marginTop: '15px',
   width: '200px',
   height: '200px',
-  border: '4px solid #CAF0F8',
+  border: '7px solid #CAF0F8',
 }
 
 
 function Profile({changeView, props}) {
-  const [addItem, setAddItem] = useState(false);
+  const [addItem, setAddItem] = useState(true);
   const [userName, setUserName] = useState('')
   const [userImage, setUserImage] = useState('')
   const [userDescription, setUserDescription] = useState('')
 
-
+// props.changeView
   useEffect(() => {
-    axios.get('http://localhost:8080/users/user/1')
+    axios.get('http://localhost:8080/users/user/2')
     .then((response)=> {
       console.log('data is', response.data[0])
       setUserName(response.data[0].name)
@@ -73,11 +82,13 @@ function Profile({changeView, props}) {
           <PictureContainer >
             <Box1>
               <Avatar sx={avatarSX} src={userImage}/>
+              <Box2>
               <div>Hello {userName}</div>
-              <div>{userDescription}</div>
+              <div>"{userDescription}"</div>
+              </Box2>
             </Box1>
             <ItemsForTrade setAddItem={setAddItem} addItem={addItem} />
-            <PendingTrades  changeView={changeView} userData={{id: 1, thumbnail_url: userImage}} />
+            {/* <PendingTrades  userData={props.user} /> */}
             <BookmarkedItems/>
           </PictureContainer>
           )}
