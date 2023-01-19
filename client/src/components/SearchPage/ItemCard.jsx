@@ -42,15 +42,12 @@ const Box2 = styled('div')({
 })
 
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, changeView }) => {
 
 const itemClick = (event) => {
-  console.log('hi');
-  // if(event.target.className !== "") {
-   
-  // } else {
-   
-  // }
+  console.log(item);
+
+  // changeView('Details', {});
 }
 
 

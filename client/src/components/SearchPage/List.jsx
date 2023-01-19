@@ -54,7 +54,7 @@ export default function List({ changeView }) {
   return (allItems && <Box1>
     <Title sx={{ color: '#505050', }}>Results</Title>
     {allItems.map((item) => {
-      return <ItemCard item={item} />
+      return <ItemCard item={item} changeView={changeView} />
     })}
  
   </Box1>)
