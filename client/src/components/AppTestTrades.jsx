@@ -2,8 +2,7 @@ import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import Auth from './Auth';
 import Profile from './ProfilePage';
-import Map1 from './SearchPage/Map';
-import SearchPage from './SearchPage/index.jsx';
+import Map1 from './SearchPage/Map'
 import PendingTrades from './ProfilePage/PendingTrades.jsx';
 import $ from 'jquery';
 
@@ -32,9 +31,7 @@ export default function App() {
         changeView('Profile', { user, changeView });
         break;
       case 'Profile':
-        return <Profile user={user} changeView={changeView} props={view.props} />;
-      case 'Map':
-          return <Map1 />;
+        return <Profile props={view.props} />;
       default:
         return null;
     }
@@ -81,7 +78,3 @@ export default function App() {
     </div>
   );
 }
-
-
-// COLOR PALETTE
-//#03045E #0077B6 #00B4D8 #90E0EF # CAF0F8
