@@ -25,7 +25,7 @@ function ProposeTradeForm(props) {
 
   const ProposeTradeButton = styled('button')({
     position: 'fixed',
-    bottom: '40px',
+    bottom: '20px',
     width: '150px',
     height: '30px',
     boxShadow: `-3px -3px 3px rgba(232,242,255,0.8),
@@ -108,6 +108,9 @@ function ProposeTradeForm(props) {
       "receiver_device_id": props.itemId,
       "status": "proposed"
     });
+
+    props.setDisplayProposeTradeForm(false);
+    props.setDisplayItemDetails(true);
   };
 
   const onHomeButtonClick = (e) => {

@@ -177,6 +177,8 @@ function Item(props) {
       <Box>
         <ProposeTradeForm
           displayProposeTradeForm={displayProposeTradeForm}
+          setDisplayProposeTradeForm={setDisplayProposeTradeForm}
+          setDisplayItemDetails={setDisplayItemDetails}
           currentUserId={props.currentUserId}
           userId={userId}
           itemPhoto={itemPhoto}
