@@ -3,6 +3,7 @@ import axios from 'axios';
 import Auth from './Auth';
 import Profile from './ProfilePage';
 import Map1 from './SearchPage/Map';
+import Item from './itemDetails';
 import SearchPage from './SearchPage/index.jsx';
 
 export default function App() {
@@ -21,11 +22,13 @@ export default function App() {
         changeView('Profile', { user, changeView });
         break;
       case 'Profile':
-        return <Profile changeView={changeView} props={view.props} />;
+        return <Profile changeView={changeView} props={view.props}/>;
       case 'Map':
         return <Map1 />;
       case 'Search':
         return <SearchPage />
+      case 'ItemDetails':
+        return <Item changeView={changeView} props={view.props}/>;
       default:
         return null;
     }
