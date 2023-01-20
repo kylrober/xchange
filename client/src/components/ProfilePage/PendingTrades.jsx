@@ -53,7 +53,7 @@ React.useEffect(() => { //sets Trades
 }, [userData])
 
 React.useEffect(() => { //sets displayed Trades
-  if(yourTrades.length && yourOffers.length) {
+  if(yourTrades.length || yourOffers.length) {
     if(currentType === 'trade' && yourTrades.length) {
       setShownTrades(yourTrades);
       setNoTradeView({display: 'none'});
