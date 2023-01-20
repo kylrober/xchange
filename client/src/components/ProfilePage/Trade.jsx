@@ -177,7 +177,7 @@ return (
         </div>
       </div>
       <span className='swap-icon'>
-      <SwapHorizIcon fontSize='inherit'/>
+      <SwapHorizIcon sx={{color: '#CAF0F8',}} fontSize='inherit'/>
       </span>
       <div className='trade-their-item'>
         <Avatar sx={{width: 50, height: 50}} className='avatar2' src={theirData.thumbnail_url}/>

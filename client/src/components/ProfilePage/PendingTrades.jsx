@@ -21,6 +21,14 @@ const Box1 = styled('div')({
   width: '100%',
 });
 
+const BlueSwitch = styled(Switch)(({ theme }) => ({
+  '& .MuiSwitch-switchBase.Mui-checked': {
+    color: '#00B4D8',
+  },
+  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+    backgroundColor: '#90E0EF',
+  },
+}));
 
 function PendingTrades({changeView, userData}) {
 console.log('testing user data', userData);
@@ -39,7 +47,7 @@ React.useEffect(() => { //set HTML span for TYPE
 }, [currentType]);
 React.useEffect(() => { //set HTML span for TYPE
   if(!shownTrades.length && initialLoad) {
-    setNoTradeView({display: 'block'});
+    setNoTradeView({display: 'block', color: '#CAF0F8'});
     console.log('timeout')
   }
 }, [shownTrades]);
@@ -108,10 +116,10 @@ const toggleTrade = () => {
     <div id='trades'>
       <div className='trade-header'>
         <span className="toggle-text">
-          <Switch defaultChecked onClick={e => {toggleTrade()}} />
-          <span>{typeHTML}</span>
+          <BlueSwitch defaultChecked onClick={e => {toggleTrade()}} />
+          <span style={{color: '#CAF0F8'}}>{typeHTML}</span>
         </span>
-        <RefreshIcon fontSize='inherit' onClick={e => {getSetTrades()}} className="refresh-trades"/>
+        <RefreshIcon style={{color: '#CAF0F8'}} fontSize='inherit' onClick={e => {getSetTrades()}} className="refresh-trades"/>
       </div>
       <div className='trade-list'>
         {shownTrades.map((trade, i) => {

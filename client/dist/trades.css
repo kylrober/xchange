@@ -1,6 +1,6 @@
 
 #trades {
-  /* background-color: brown; */
+  background-color: #0077B6;
   font-size: 3rem;
   padding: 2px;
 }
@@ -111,7 +111,7 @@
 }
 
 .no-trades {
-  background-color: rgb(255, 255, 255);
+  background-color: #0077B6;
   color: rgb(164, 164, 164);
   font-size: 1.7rem;
   padding: 10%;

@@ -18,7 +18,7 @@ const Box2 = styled('div')({
   backgroundColor: '#0077B6',
   borderRadius: '20px',
   paddingLeft: '20px',
-  paddingTop: '5px',
+  paddingTop: '14px',
   background: '#0077B68',
   boxShadow: `inset 6px 6px 6px #006093,
   inset -6px -6px 6px #008ed9`,
@@ -79,11 +79,10 @@ const handleClick = () => {
         <Avatar src={itemImage} sx={avatarSX}/>
       </Box>
       <Box2>
-        <div> {itemName}</div>
-        <div>  Condition: {itemCondition}</div>
-        <div> Description: {itemDescription} </div>
+        <div style={{color: '#CAF0F8'}}> {itemName}</div>
+        <div style={{color: '#CAF0F8'}}>  Condition: {itemCondition}</div>
+        <div style={{color: '#CAF0F8'}}> Description: {itemDescription} </div>
       </Box2>
-
     </Box1>
 
   );

@@ -12,33 +12,34 @@ const avatarSX = {
   marginTop: '5px',
   width: '75px',
   height: '75px',
-  // border: '4px solid #CAF0F8',
+  border: '4px solid #0077B6',
   marginRight: '10px',
   marginLeft: '-8px',
 }
+
 const Box1 = styled('div')({
   justifyContent: 'center',
   alignContent: 'center',
   display: 'flex',
   bgcolor: '#0077B6',
   height: '10vh',
-
   borderRadius: '20px',
-  width: '90%'
+  width: '90%',
+  marginBottom: '15px'
 })
-
 const Box2 = styled('div')({
   flexGrow: 1,
   alignContent: 'center',
   backgroundColor: '#0077B6',
   borderRadius: '20px',
   paddingLeft: '20px',
-  paddingTop: '18px',
-  background: '#0077B6',
+  paddingTop: '14px',
+  paddingBottom: '10px',
+  background: '#0077B68',
   boxShadow: `inset 6px 6px 6px #006093,
   inset -6px -6px 6px #008ed9`,
-  fontSize:'smaller'
-
+  fontSize:'smaller',
+  overflow: 'scroll'
 })
 
 
@@ -61,9 +62,9 @@ return (
       <Avatar src={item.thumbnail_url} sx={avatarSX}/>
     </Box>
     <Box2>
-      <div> {item.name}</div>
-      <div> Condition: {item.item_condition}</div>
-      <div> Description: {item.description}</div>
+      <div style={{color: '#CAF0F8'}}> {item.name}</div>
+      <div style={{color: '#CAF0F8'}} > Condition: {item.item_condition}</div>
+      <div style={{color: '#CAF0F8'}}> Description: {item.description}</div>
     </Box2>
 
   </Box1>
