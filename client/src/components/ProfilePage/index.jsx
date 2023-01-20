@@ -64,11 +64,11 @@ function Profile({user, changeView, props}) {
   const [itemsData, setItemsData] = useState([])
 // props.changeView
   useEffect(() => {
-    console.log('CURRENT USER', user)
+    console.log('CURRENT USER', props.user)
 
-      setUserName(user.name)
-      setUserImage(user.thumbnail_url || 'https://viterbischool.usc.edu/wp-content/uploads/2020/05/Lily-Profile-Square.jpeg')
-      setUserDescription(user.description)
+      setUserName(props.user.name)
+      setUserImage(props.user.thumbnail_url || 'https://viterbischool.usc.edu/wp-content/uploads/2020/05/Lily-Profile-Square.jpeg')
+      setUserDescription(props.user.description)
     },[props])
 
   //GET ITEMS FOR CURRENT USER
@@ -79,7 +79,7 @@ function Profile({user, changeView, props}) {
       setItemsData(res.data)
       console.log('ITEM DATA', res.data)
     })
-  }, [user])
+  }, [props.user])
 
 
   return (
@@ -107,7 +107,7 @@ function Profile({user, changeView, props}) {
               </Box2>
             </Box1>
 
-            <ItemsForTrade user={user} itemsData={itemsData} setAddItem={setAddItem} addItem={addItem}  />
+            <ItemsForTrade user={props.user} itemsData={itemsData} setAddItem={setAddItem} addItem={addItem}  />
             <PendingTrades  changeView={changeView} userData={{id: 1, thumbnail_url: userImage}} />
             <BookmarkedItems userData={{id: 1, thumbnail_url: userImage}} />
           </PictureContainer>
