@@ -5,14 +5,14 @@
       "type": "Feature",
       "id": 0,
       "properties": {
-        "Name": "Susan IPHONE XR1",
+        "name": "Susan IPHONE XR1",
         "device": "iphone"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -71.13112956925647,
-          42.32550867371509
+          40.7318,
+          -73.9328
         ]
       }
     },
