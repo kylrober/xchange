@@ -28,7 +28,7 @@ const Title = styled('div')({
 })
 
 
-export default function List({ changeView }) {
+export default function List({ changeView, condition }) {
 
   const [allItems, setAllItems] = React.useState([]);
   // const [allUsers, setAllUsers] = useState([]);
@@ -42,20 +42,30 @@ export default function List({ changeView }) {
         console.log(error);
       });
 
-  //   axios.get('http://localhost:8080/users')
-  //     .then((response) => {
-  //       setAllUsers(response);
-  //     }).catch((error) => {
-  //       console.log(error);
-  //     });
+    //   axios.get('http://localhost:8080/users')
+    //     .then((response) => {
+    //       setAllUsers(response);
+    //     }).catch((error) => {
+    //       console.log(error);
+    //     });
   }, []);
 
 
-  return (allItems && <Box1>
-    <Title sx={{ color: '#505050', }}>Results</Title>
-    {allItems.map((item) => {
-      return <ItemCard item={item} changeView={changeView} />
-    })}
- 
-  </Box1>)
+  return (allItems &&
+    <Box1>
+      <Title sx={{ color: '#505050', }}>Results</Title>
+      {
+        condition.length === 0
+          ?
+          allItems.map((item) => {
+            return <ItemCard item={item} changeView={changeView} />
+          })
+          :
+          allItems.map((item) => {
+            return condition === item.item_condition && <ItemCard item={item} changeView={changeView} />
+          })
+      }
+    </Box1>
+  );
 }
+

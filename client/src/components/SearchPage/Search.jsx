@@ -13,10 +13,13 @@ export default function Search({ changeView }) {
   const [condition, setCondition] = React.useState('');
   const handleChange = (event) => {
     setCategory(event.target.value);
+    // console.log(category);
   };
 
   const handleChange2 = (event) => {
     setCondition(event.target.value);
+    console.log(condition);
+    // console.log(condition);
   };
 
   const mapClick = (event) => {
@@ -88,16 +91,18 @@ export default function Search({ changeView }) {
               marginBottom: '.5em',
             }}
           >
-            <MenuItem value="mint">Mint</MenuItem>
             <MenuItem value="new">New</MenuItem>
-            <MenuItem value="worn">Worn</MenuItem>
+            <MenuItem value="openBox">Open Box</MenuItem>
+            <MenuItem value="likeNew">Like New</MenuItem>
+            <MenuItem value="good">Good</MenuItem>
+            <MenuItem value="fair">Fair</MenuItem>
             <MenuItem value="broken">Broken</MenuItem>
           </Select>
         </FormControl>
       </Box>
 
       <Box id="results">
-        <List changeView={changeView} />
+        <List changeView={changeView} condition={condition} />
       </Box>
     </Container>
   );
