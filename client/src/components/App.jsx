@@ -8,7 +8,7 @@ import SearchPage from './SearchPage/index.jsx';
 
 export default function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') ?? 'null'));
-  const [view, setView] = useState({ name: 'Auth', props: { setUser } });
+const [view, setView] = useState({ name: 'Auth', props: { setUser } });
 
   const changeView = (viewName, viewProps, isCallback = false) => (
     !isCallback ? setView({ name: viewName, props: viewProps })
@@ -26,7 +26,7 @@ export default function App() {
       case 'Map':
         return <Map1 />;
       case 'Search':
-        return <SearchPage />
+        return <SearchPage changeView={changeView} props={view.props}/>;
       case 'ItemDetails':
         return <Item changeView={changeView} props={view.props}/>;
       default:
