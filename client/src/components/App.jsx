@@ -5,7 +5,7 @@ import Profile from './ProfilePage';
 import Map1 from './SearchPage/Map';
 import Item from './itemDetails';
 import SearchPage from './SearchPage/index.jsx';
-import Item from './ItemDetails/index.jsx';
+import Item from './itemDetails';
 
 export default function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') ?? 'null'));
@@ -43,3 +43,8 @@ export default function App() {
 
   return renderView();
 }
+
+
+
+// COLOR PALETTE
+//#03045E #0077B6 #00B4D8 #90E0EF # CAF0F8
