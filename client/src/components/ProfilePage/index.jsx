@@ -71,13 +71,11 @@ function Profile({user, changeView, props}) {
 
   //GET ITEMS FOR CURRENT USER
 
-  useEffect(()=> {
-    axios.get(`/items/user/${user.id}`)
-    .then((res)=> {
-      setItemsData(res.data)
-      // console.log('ITEM DATA', res.data)
-    })
-  }, [user])
+  useEffect(() => {
+    axios.get(`/items/user/${user.id}`).then((res) => {
+      setItemsData(res.data);
+    });
+  }, [addItem]);
 
   const handleSearch = () => {
    changeView('Search', {})
