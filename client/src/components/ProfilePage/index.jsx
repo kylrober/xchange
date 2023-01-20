@@ -6,7 +6,8 @@ import BookmarkedItems from './BookmarkedItems'
 import AddItem from './AddItem';
 import { styled } from '@mui/system';
 import axios from 'axios';
-import SearchIcon from '@mui/icons-material/Search';
+///
+
 
 const PictureContainer = styled('div')({
   backgroundColor: '#CAF0F8',
@@ -51,24 +52,21 @@ const avatarSX = {
   width: '200px',
   height: '200px',
   border: '7px solid #CAF0F8',
-
 }
 
-
-function Profile({user, changeView, props}) {
-  const [addItem, setAddItem] = useState(false);
-
+function Profile({changeView, props}) {
+  const [addItem, setAddItem] = useState(true);
   const [userName, setUserName] = useState('')
   const [userImage, setUserImage] = useState('')
   const [userDescription, setUserDescription] = useState('')
-  const [itemsData, setItemsData] = useState([])
+
 // props.changeView
   useEffect(() => {
-    console.log('CURRENT USER', user)
+    console.log('CURRENT USER', props.user)
 
-      setUserName(user.name)
-      setUserImage(user.thumbnail_url || 'https://viterbischool.usc.edu/wp-content/uploads/2020/05/Lily-Profile-Square.jpeg')
-      setUserDescription(user.description)
+      setUserName(props.user.name)
+      setUserImage(props.user.thumbnail_url || 'https://viterbischool.usc.edu/wp-content/uploads/2020/05/Lily-Profile-Square.jpeg')
+      setUserDescription(props.user.description)
     },[props])
 
   //GET ITEMS FOR CURRENT USER
@@ -79,26 +77,13 @@ function Profile({user, changeView, props}) {
       setItemsData(res.data)
       console.log('ITEM DATA', res.data)
     })
-  }, [user])
-
+  }, [props.user])
 
   return (
     <>
       {!addItem
           && (
           <PictureContainer >
-                   <SearchIcon sx={{
-  boxShadow: `5px 5px 10px #9ab6bc,
-  -5px -5px 10px #faffff`,
-  borderRadius: '2000px',
-  backgroundColor: '#CAF0F8',
-  border: 'none',
-  color: '#505050',
-  marginTop: '15px',
-  zIndex: 1000,
-  width: '50px',
-  height: '50px'
-}}/>
             <Box1>
               <Avatar sx={avatarSX} src={userImage}/>
               <Box2>
@@ -107,7 +92,8 @@ function Profile({user, changeView, props}) {
               </Box2>
             </Box1>
 
-            <ItemsForTrade user={user} itemsData={itemsData} setAddItem={setAddItem} addItem={addItem}  />
+
+            <ItemsForTrade user={props.user} itemsData={itemsData} setAddItem={setAddItem} addItem={addItem}  />
             <PendingTrades  changeView={changeView} userData={{id: 1, thumbnail_url: userImage}} />
             <BookmarkedItems userData={{id: 1, thumbnail_url: userImage}} />
           </PictureContainer>
@@ -120,4 +106,5 @@ function Profile({user, changeView, props}) {
 
   );
 }
-export default Profile
+
+export default Profile;
