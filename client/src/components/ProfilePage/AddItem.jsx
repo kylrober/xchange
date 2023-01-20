@@ -153,7 +153,6 @@ function AddItem({ user, setAddItem, addItem }) {
         value={itemCondition}
         onChange={(e) => setCondition(e)}
         label="Condition"
-
       >
         <MenuItem value="New">New</MenuItem>
         <MenuItem value="Open Box">Open Box</MenuItem>
