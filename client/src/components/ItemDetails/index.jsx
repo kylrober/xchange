@@ -9,8 +9,7 @@ import * as API from '../../API.js';
 import ProposeTradeForm from './ProposeTradeForm';
 import {styled} from '@mui/system';
 
-function Item({props, changeView, user}) {
-  console.log('')
+function Item(props) {
   const [itemId, setItemId] = useState();
   const [itemPhoto, setItemPhoto] = useState('');
   const [itemTitle, setItemTitle] = useState('');
@@ -76,9 +75,9 @@ function Item({props, changeView, user}) {
     boxShadow: `-5px -5px 10px #00507a,
     5px 5px 10px #009ef2`,
     borderRadius: '30px',
-    backgroundColor: '#CAF0F8',
-    border: '4px solid #CAF0F8',
-    color: '#CAF0F8',
+    backgroundColor: '#0077B6',
+    border: '4px solid #0077B6',
+    color: '#505050',
   });
 
   const additionalTopButtonsStyling = {
@@ -118,7 +117,7 @@ function Item({props, changeView, user}) {
     marginTop: '15px',
     width: '75px',
     height: '75px',
-    border: '4px solid #CAF0F8',
+    border: '4px solid #0077B6',
     marginRight: '20px'
   }
   const itemAvatarSX = {
@@ -151,12 +150,8 @@ function Item({props, changeView, user}) {
   });
 
   useEffect(() => {
-    // console.log('PROPS ARE ', props)
-    console.log('user in item details is ', user)
-
-    API.getItemFromID(props.currentItemId)
+    API.getItemFromID(props.props.currentItemId)
       .then((response) => {
-        console.log(response.data);
         setItemId(response.data[0].id);
         setItemPhoto(response.data[0].thumbnail_url);
         setItemTitle(response.data[0].name);
@@ -166,7 +161,7 @@ function Item({props, changeView, user}) {
       }).catch((error) => {
         console.log(error);
       });
-  }, [props.currentItemId]);
+  }, []);
 
   useEffect(() => {
     API.getUserFromID(userId)
@@ -190,14 +185,14 @@ function Item({props, changeView, user}) {
   const onHomeButtonClick = (e) => {
     e.preventDefault();
     setDisplayItemDetails(false);
-    changeView('Profile', {user: user, changeView: changeView});
+    props.changeView('Profile', {});
   };
 
   const onAddButtonClick = (e) => {
     e.preventDefault();
     const bookmarkObj = {
       itemID: itemId,
-      userID: user.id,
+      userID: userId,
     };
     axios.post('http://localhost:8080/bookmark', bookmarkObj)
       .then(() => {
@@ -214,10 +209,11 @@ function Item({props, changeView, user}) {
           displayProposeTradeForm={displayProposeTradeForm}
           setDisplayProposeTradeForm={setDisplayProposeTradeForm}
           setDisplayItemDetails={setDisplayItemDetails}
-          currentUserId={props.currentUserId}
+          currentUserId={props.props.currentUserId}
           userId={userId}
           itemPhoto={itemPhoto}
-          itemId={itemId}/>
+          itemId={itemId}
+          changeView={props.changeView}/>
       </Box>
 
 
