@@ -3,11 +3,13 @@ import axios from 'axios';
 import Auth from './Auth';
 import Profile from './ProfilePage';
 import Map1 from './SearchPage/Map';
+import Item from './itemDetails';
 import SearchPage from './SearchPage/index.jsx';
 import Item from './ItemDetails/index.jsx';
 
 export default function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') ?? 'null'));
+
   const [view, setView] = useState({ name: 'Auth', props: { setUser } });
   // const [view, setView] = useState({ name: 'Profile', props: { setUser } });
   // const [view, setView] = useState({ name: 'SearchPage', props: { setUser } });
@@ -28,9 +30,9 @@ export default function App() {
       case 'Profile':
         return <Profile changeView={changeView} props={view.props} />;
       case 'SearchPage':
-        return <SearchPage changeView={changeView} props={view.props} ß/>;
+        return <SearchPage changeView={changeView} props={view.props} />;
       case 'Map':
-        return <Map1 changeView={changeView} props={view.props} ß/>;
+        return <Map1 changeView={changeView} props={view.props} />;
       case 'ItemDetails':
         return <Item changeView={changeView} props={view.props} />;
       default:

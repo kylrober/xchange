@@ -62,17 +62,22 @@ function Profile({changeView, props}) {
 
 // props.changeView
   useEffect(() => {
-    axios.get('http://localhost:8080/users/user/2')
-    .then((response)=> {
-      console.log('data is', response.data[0])
-      setUserName(response.data[0].name)
-      setUserImage(response.data[0].thumbnail_url)
-      setUserDescription(response.data[0].description)
+    console.log('CURRENT USER', props.user)
+
+      setUserName(props.user.name)
+      setUserImage(props.user.thumbnail_url || 'https://viterbischool.usc.edu/wp-content/uploads/2020/05/Lily-Profile-Square.jpeg')
+      setUserDescription(props.user.description)
+    },[props])
+
+  //GET ITEMS FOR CURRENT USER
+
+  useEffect(()=> {
+    axios.get('/items/user/3')
+    .then((res)=> {
+      setItemsData(res.data)
+      console.log('ITEM DATA', res.data)
     })
-    .catch(err => {
-      console.error(err);
-    })
-  },[props])
+  }, [props.user])
 
   return (
     <>
@@ -86,8 +91,10 @@ function Profile({changeView, props}) {
               <div>"{userDescription}"</div>
               </Box2>
             </Box1>
-            <ItemsForTrade setAddItem={setAddItem} addItem={addItem} />
-            <PendingTrades  changeView={changeView} userData={{id: 1, thumbnail_url: userImage}} />
+
+
+            <ItemsForTrade user={props.user} itemsData={itemsData} setAddItem={setAddItem} addItem={addItem}  />
+            <PendingTrades  changeView={changeView} userData={props.user} />
             <BookmarkedItems userData={{id: 1, thumbnail_url: userImage}} />
           </PictureContainer>
           )}
