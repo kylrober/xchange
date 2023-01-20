@@ -22,6 +22,8 @@ const INITIAL_VIEW_STATE = {
 };
 
 const Title = styled('div')({
+  fontFamily: `'Courgette', cursive`,
+  fontSize: 'x-large',
   position: 'absolute',
   top: '80px',
   left: '155px'
