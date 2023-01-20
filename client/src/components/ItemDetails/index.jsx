@@ -72,7 +72,7 @@ function Item(props) {
   const additionalTopButtonsStyling = {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   }
 
   const additionalUserInfoStyling = {
@@ -135,7 +135,6 @@ function Item(props) {
   useEffect(() => {
     API.getUserFromID(userId)
     .then((response) => {
-      console.log('************', userId)
       setCurrentUserDescription(response.data[0].description)
       setCurrentUserEmail(response.data[0].email)
       setProfilePhotoThumbnail(response.data[0].thumbnail_url)

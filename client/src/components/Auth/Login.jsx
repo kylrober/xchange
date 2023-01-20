@@ -29,7 +29,6 @@ const Box1 = styled('div')({
   borderRadius: '30px',
   width: '85%',
   height: '65%',
-
 });
 const AddButton = styled('input')({
   width: '80px',
@@ -79,7 +78,6 @@ export default function Login({ props: { setUser, setRegister } }) {
       email: event.target.email.value,
       password: event.target.password.value,
     };
-    console.log(data)
     const { data: user } = await axios.post('/users/auth', data);
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
@@ -87,35 +85,49 @@ export default function Login({ props: { setUser, setRegister } }) {
     }
   };
 
-
   return (
     <PictureContainer>
       <Box1>
         <Box2>
-      <Img1 src="https://i.ibb.co/SvX3SVN/techxchange-3.png" />
-      </Box2>
-      <form onSubmit={handleSubmit} style={{ width: '75%' }}>
-        <Container maxWidth="sm">
-          <TextField1 type="email" label="Email" name="email" required sx={{ width: '100%' }} />
-          <hr />
-          <TextField1 type="password" label="Password" name="password" required sx={{ width: '100%' }} />
-          <hr />
-          <Box2>
-          <AddButton type="submit" value='Log in'/>
-          <Typography
-            onClick={() => setRegister(true)}
-            sx={{
-              color: '#CAF0F8',
-              fontSize: '.9rem',
-              fontWeight: 'bold',
-              ':hover': { cursor: 'pointer' },
-            }}>
-            Need an account?
-          </Typography>
-          </Box2>
-        </Container>
-      </form>
+          <Img1 src="https://i.ibb.co/SvX3SVN/techxchange-3.png" />
+        </Box2>
+        <form onSubmit={handleSubmit} style={{ width: '75%' }}>
+          <Container maxWidth="sm">
+            <TextField1
+              type="email"
+              label="Email"
+              name="email"
+              placeholder="Email"
+              required
+              sx={{ width: '100%' }}
+            />
+            <hr />
+            <TextField1
+              type="password"
+              label="Password"
+              name="password"
+              placeholder="Password"
+              required
+              sx={{ width: '100%' }}
+            />
+            <hr />
+            <Box2>
+              <AddButton type="submit" value="Log in" />
+              <Typography
+                onClick={() => setRegister(true)}
+                sx={{
+                  color: '#CAF0F8',
+                  fontSize: '.9rem',
+                  fontWeight: 'bold',
+                  ':hover': { cursor: 'pointer' },
+                }}
+              >
+                Need an account?
+              </Typography>
+            </Box2>
+          </Container>
+        </form>
       </Box1>
-      </PictureContainer>
+    </PictureContainer>
   );
 }
