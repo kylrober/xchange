@@ -42,12 +42,13 @@ const Box2 = styled('div')({
 })
 
 
-const ItemCard = ({ item, changeView }) => {
+const ItemCard = ({ item, changeView, user }) => {
 
 const itemClick = (event) => {
-  console.log(item);
-
-  // changeView('Details', {});
+  console.log('this item i want is ', item);
+  console.log('this is the user I WANT ', user);
+  // changeView('ItemDetails', {});
+  changeView('ItemDetails', {currentUserId: user.id, currentItemId: item.id, changeview: changeView});
 }
 
 
@@ -71,4 +72,3 @@ return (
 }
 
 export default ItemCard;
-

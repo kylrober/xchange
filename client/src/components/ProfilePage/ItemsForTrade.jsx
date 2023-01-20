@@ -18,7 +18,6 @@ const Box1 = styled('div')({
   marginBottom: '35px',
   paddingBottom: '20px',
   width: '100%',
-
 });
 const Box2 = styled('div')({
   backgroundColor: '#0077B6',
@@ -26,8 +25,6 @@ const Box2 = styled('div')({
   flexWrap: 'wrap',
   display: 'flex',
   justifyContent: 'center',
-
-
 });
 const Title = styled('div')({
   textAlign: 'center',
@@ -45,7 +42,6 @@ const AddButton = styled('button')({
   border: 'none',
   color: '#505050',
   marginTop: '15px'
-
 })
 const buttonSX = {
   "&:hover": {
@@ -59,6 +55,7 @@ function ItemsForTrade({ changeView, user, itemsData, setAddItem, addItem }) {
     console.log('clicked');
     setAddItem(!addItem);
   };
+  console.log(itemsData)
   return (
       <Box1 >
         <Title sx={{color: '#505050',}}>Items for Trade</Title>
@@ -70,7 +67,6 @@ function ItemsForTrade({ changeView, user, itemsData, setAddItem, addItem }) {
         </AddButton>
         </Box2>
       </Box1>
-
 
   );
 }

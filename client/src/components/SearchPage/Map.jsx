@@ -27,7 +27,7 @@ const Title = styled('div')({
   left: '155px'
 })
 
-function Map1({changeView, props}) {
+function Map1({changeView, props, user}) {
   const [allUsers, setAllUsers] = useState([]);
   const [mapData, setMapData] = useState(DATA);
   const [showDetails, setShowDetails] = useState(false);
@@ -88,10 +88,10 @@ function Map1({changeView, props}) {
       layers={layers}>
         <Title>find an item</Title>
         <Map mapStyle={MAP_STYLE} mapboxAccessToken={ACCESS_TOKEN}/>
-        {item ? <ItemModal showDetails={showDetails} setShowDetails={setShowDetails} onCloseItem={() => setShowDetails(false)} item={item} changeView={changeView} props={props}/> : null}
+        {item ? <ItemModal showDetails={showDetails} setShowDetails={setShowDetails} onCloseItem={() => setShowDetails(false)} item={item} changeView={changeView} user={user}/> : null}
      </DeckGL>
     </>
-  )
+  );
 }
 
 export default Map1;

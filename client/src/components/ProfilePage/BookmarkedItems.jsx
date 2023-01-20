@@ -45,7 +45,6 @@ const AddButton = styled('button')({
   border: 'none',
   color: '#505050',
   marginTop: '15px'
-
 })
 const buttonSX = {
   "&:hover": {
@@ -54,21 +53,22 @@ const buttonSX = {
   },
 };
 
-function BookmarkedItems ({user, userData}) {
+function BookmarkedItems ({user, changeView}) {
 
   const [bookmarkedForUser, setBookmarkedForUser] = useState([]);
 
-  console.log('props in bookmarked items ', userData.id);
+  console.log('props in bookmarked items ', user.id);
+
   const getBookmarkedItems = () => {
     console.log('clicked, fetching data');
     axios.get('http://localhost:8080/bookmarks', {
       params: {
-        id: userData.id,
+        id: user.id,
       },
     }
     )
       .then((result) => {
-        console.log('result on front end is ', result);
+        console.log('BOOKMARKED ITEMS ARE ', result.data);
         setBookmarkedForUser(result.data);
       })
       .catch((error) => {
@@ -77,13 +77,16 @@ function BookmarkedItems ({user, userData}) {
   }
   useEffect(() => {
     getBookmarkedItems();
-  }, [userData])
+  }, [user.id])
+  // useEffect(() => {
+  //   getBookmarkedItems();
+  // }, [])
 
 
   return (
       <Box1 >
         <Title sx={{color: '#505050',}}>Bookmarked Items</Title>
-        {bookmarkedForUser.map((item, key) => <ItemEntry user={user} item={item} key={key} />)
+        {bookmarkedForUser.map((item, key) => <ItemEntry user={user} item={item} key={key} changeView={changeView}/>)
         }
         <Box2>
         </Box2>

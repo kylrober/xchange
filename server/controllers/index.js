@@ -9,6 +9,7 @@ module.exports.Map = require('./Map');
 module.exports.Shared = {
   insertDevice: function (req, res) {
     const userID = req.params.userID;
+    console.log('user id in models ', req.params.userID, req.body.name, req.body.thumbnail_url, req.body.item_condition);
     const qString = `INSERT INTO devices (user_id, name, thumbnail_url, description, item_condition) VALUES (${userID}, '${req.body.name}', '${req.body.thumbnail_url}', '${req.body.description}', '${req.body.item_condition}');`;
 
     console.log('QString\n', qString);

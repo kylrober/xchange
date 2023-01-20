@@ -6,24 +6,24 @@ import { Box, Switch, Grid } from '@mui/material/';
 import {styled} from '@mui/system'
 import RefreshIcon from '@mui/icons-material/Refresh';
 
-
-
 const Box1 = styled('div')({
-  backgroundColor: '#0077B6',
+  backgroundColor: '#CAF0F8',
   alignContent: 'center',
   flexWrap: 'wrap',
   display: 'flex',
   flexDirection: 'column' ,
   justifyContent: 'flex-start',
-  boxShadow: `-5px -5px 10px #00507a,
-  5px 5px 10px #009ef2`,
+  boxShadow: `-5px -5px 10px rgba(255,255,255,0.8),
+  5px 5px 10px rgba(0,0,0,0.25)`,
   borderRadius: '30px',
-  marginBottom: '35px',
-  paddingBottom: '20px',
+  marginBottom: '20px',
+  height: '25vh',
   width: '100%',
 });
 
+
 function PendingTrades({changeView, userData}) {
+console.log('testing user data', userData);
 // userData { id, email, password, thumnail_url, description, street, zip_code }
 const [yourTrades, setYourTrades] = React.useState([]);
 const [yourOffers, setYourOffers] = React.useState([]);
@@ -46,7 +46,7 @@ React.useEffect(() => { //set HTML span for TYPE
 
 
 React.useEffect(() => { //sets Trades
-  console.log('User Data in Pending Trades,', userData);
+  // console.log('User Data in Pending Trades,', userData);
   if(userData.id) {
     getSetTrades();
   }
@@ -89,8 +89,8 @@ API.getAllInvolvedTrades(userData.id)
   setYourTrades(tempTrades);
   setYourOffers(tempOffers);
 
-  console.log('Trades\n', tempTrades);
-  console.log('Offers\n', tempOffers);
+  // console.log('Trades\n', tempTrades);
+  // console.log('Offers\n', tempOffers);
   if(errTrades.length) {console.log('error trades involved', errTrades)}
 }) //Involved Trades set
 .catch(err => {
@@ -105,7 +105,6 @@ const toggleTrade = () => {
 
 
   return (
-    <Box1>
     <div id='trades'>
       <div className='trade-header'>
         <span className="toggle-text">
@@ -123,7 +122,6 @@ const toggleTrade = () => {
         Your Trades will show here..
       </div>
     </div>
-    </Box1>
   );
 }
 export default PendingTrades;

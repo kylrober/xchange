@@ -9,7 +9,7 @@ function saveBookmark (req, res) {
       console.log('err in bookmarks controllers is ', err);
       res.status(404).send(err);
     } else {
-      console.log('success in bookmarks post ', result);
+      // console.log('success in bookmarks post ', result);
       res.status(201).send(result);
     }
   });

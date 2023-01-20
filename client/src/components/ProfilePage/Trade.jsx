@@ -20,6 +20,7 @@ const Trade = ({changeView, yourData, i, type, trade}) => {
   const [btnContent, setBtnContent] = React.useState('');
   const [isTerminated, setIsTerminated] = React.useState(false);
   const [isMounted, setIsMounted] = React.useState(false);
+  console.log('yourData is ', yourData);
 
   React.useEffect(() => { //start animation
     setTimeout(() => {
@@ -194,4 +195,3 @@ return (
 };
 
 export default Trade;
-

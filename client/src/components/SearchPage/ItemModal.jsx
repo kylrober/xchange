@@ -4,10 +4,12 @@ import './modal.css';
 
 const { useState } = React;
 
-function ItemModal({showDetails, setShowDetails, onCloseItem, item}) {
+function ItemModal({showDetails, setShowDetails, onCloseItem, item, user, changeView}) {
   if (!showDetails) {
     return null;
   }
+  console.log('item ', item);
+  console.log('USER ', user);
 
   const onClick = () => {
     setShowDetails(false);
@@ -15,7 +17,7 @@ function ItemModal({showDetails, setShowDetails, onCloseItem, item}) {
 
   const toItem = () => {
     console.log('send stuff to item');
-
+    changeView('ItemDetails', {currentUserId: user.id, currentItemId: item.itemID, changeview: changeView})
   }
 
   return (

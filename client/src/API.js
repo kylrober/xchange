@@ -66,6 +66,7 @@ export function getItemsFromUserID(userID) {
 }
 
 export function insertDevice(userID, dataObj) {
+  console.log('data obj in insert ', dataObj, userID);
   return new Promise((resolve,reject) => {
     axiosCall('post', `/item/insert/${userID}`, dataObj)
     .then(res => {

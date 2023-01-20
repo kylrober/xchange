@@ -9,7 +9,8 @@ import * as API from '../../API.js';
 import ProposeTradeForm from './ProposeTradeForm';
 import {styled} from '@mui/system';
 
-function Item({props}) {
+function Item({props, changeView, user}) {
+  console.log('')
   const [itemId, setItemId] = useState();
   const [itemPhoto, setItemPhoto] = useState('');
   const [itemTitle, setItemTitle] = useState('');
@@ -119,7 +120,8 @@ function Item({props}) {
   };
 
   useEffect(() => {
-    console.log('PROPS ARE ', props)
+    // console.log('PROPS ARE ', props)
+    console.log('user in item details is ', user)
 
     API.getItemFromID(props.currentItemId)
       .then((response) => {
@@ -157,14 +159,14 @@ function Item({props}) {
   const onHomeButtonClick = (e) => {
     e.preventDefault();
     setDisplayItemDetails(false);
-    props.changeView('Profile', {});
+    changeView('Profile', {user: user, changeView: changeView});
   };
 
   const onAddButtonClick = (e) => {
     e.preventDefault();
     const bookmarkObj = {
       itemID: itemId,
-      userID: userId,
+      userID: user.id,
     };
     axios.post('http://localhost:8080/bookmark', bookmarkObj)
       .then(() => {

@@ -8,7 +8,7 @@ import ItemCard from './ItemCard.jsx';
 import List from './List.jsx';
 import MapIcon from '@mui/icons-material/Map';
 
-export default function Search({ changeView }) {
+export default function Search({ changeView, user }) {
   const [category, setCategory] = React.useState('');
   const [condition, setCondition] = React.useState('');
   const handleChange = (event) => {
@@ -51,19 +51,19 @@ export default function Search({ changeView }) {
   return (
     <Container id="search">
       <Box id="topButtons">
-        <IconButton id="homeButton">
-          <HomeIcon onClick={homeClick} />
+        <IconButton id="homeButton" onClick={homeClick} >
+          <HomeIcon />
         </IconButton>
 
-        <IconButton id="mapButton">
-          <MapIcon onClick={mapClick} />
+        <IconButton id="mapButton" onClick={mapClick}>
+          <MapIcon />
         </IconButton>
       </Box>
 
       <Box id="filter-box">
         <Typography id="filterTitle" variant="h4" sx={{ marginBottom: '.5em' }}>Filter Items</Typography>
         <FormControl fullWidth>
-          <InputLabel id="label">Category</InputLabel>
+          {/* <InputLabel id="label">Category</InputLabel>
           <Select
             sx={{
               marginBottom: '1em',
@@ -77,7 +77,7 @@ export default function Search({ changeView }) {
             <MenuItem value="phones">Phones</MenuItem>
             <MenuItem value="computers">Computers</MenuItem>
             <MenuItem value="consoles">Consoles</MenuItem>
-          </Select>
+          </Select> */}
         </FormControl>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Condition</InputLabel>
@@ -91,18 +91,18 @@ export default function Search({ changeView }) {
               marginBottom: '.5em',
             }}
           >
-            <MenuItem value="new">New</MenuItem>
-            <MenuItem value="openBox">Open Box</MenuItem>
-            <MenuItem value="likeNew">Like New</MenuItem>
-            <MenuItem value="good">Good</MenuItem>
-            <MenuItem value="fair">Fair</MenuItem>
-            <MenuItem value="broken">Broken</MenuItem>
+            <MenuItem value="New">New</MenuItem>
+            <MenuItem value="Open Box">Open Box</MenuItem>
+            <MenuItem value="Like New">Like New</MenuItem>
+            <MenuItem value="Good">Good</MenuItem>
+            <MenuItem value="Fair">Fair</MenuItem>
+            <MenuItem value="Broken">Broken</MenuItem>
           </Select>
         </FormControl>
       </Box>
 
       <Box id="results">
-        <List changeView={changeView} condition={condition} />
+        <List user={user} changeView={changeView} condition={condition} />
       </Box>
     </Container>
   );

@@ -3,18 +3,12 @@ import axios from 'axios';
 import Auth from './Auth';
 import Profile from './ProfilePage';
 import Map1 from './SearchPage/Map';
-import Item from './itemDetails';
 import SearchPage from './SearchPage/index.jsx';
 import Item from './itemDetails';
 
 export default function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') ?? 'null'));
-
   const [view, setView] = useState({ name: 'Auth', props: { setUser } });
-  // const [view, setView] = useState({ name: 'Profile', props: { setUser } });
-  // const [view, setView] = useState({ name: 'SearchPage', props: { setUser } });
-  // const [view, setView] = useState({ name: 'Map', props: { setUser } });
-  // const [view, setView] = useState({ name: 'ItemDetails', props: { setUser } });
 
   const changeView = (viewName, viewProps, isCallback = false) => (
     !isCallback ? setView({ name: viewName, props: viewProps })
@@ -28,13 +22,13 @@ export default function App() {
         changeView('Profile', { user, changeView });
         break;
       case 'Profile':
-        return <Profile changeView={changeView} props={view.props} />;
-      case 'SearchPage':
-        return <SearchPage changeView={changeView} props={view.props} />;
+        return <Profile user={user} changeView={changeView} props={view.props} />;
       case 'Map':
-        return <Map1 changeView={changeView} props={view.props} />;
-      case 'ItemDetails':
-        return <Item changeView={changeView} props={view.props} />;
+        return <Map1 changeView={changeView} props={view.props} user={user}/>;
+      case 'Search':
+        return <SearchPage user={user} changeView={changeView} props={view.props}/>;
+        case 'ItemDetails':
+          return <Item user={user} changeView={changeView} props={view.props}/>;
       default:
         return null;
     }

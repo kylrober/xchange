@@ -8,6 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import * as API from '../../API';
 
 const Box1 = styled('div')({
   backgroundColor: '#CAF0F8',
@@ -99,15 +100,37 @@ const TextArea1 = styled('textarea')({
 
 // })
 
-function AddItem({ setAddItem, addItem }) {
+function AddItem({ user, setAddItem, addItem }) {
+  console.log('user is ', user);
   const [itemName, setItemName] = useState('');
   const [itemCondition, setItemCondition] = useState('');
   const [itemImage, setItemImage] = useState('');
   const [itemDescription, setItemDescription] = useState('');
+
   const handleClick = () => {
     setAddItem(!addItem);
-    console.log(itemName, itemCondition, itemDescription, itemImage);
+    // console.log(itemName, itemCondition, itemDescription, itemImage);
   };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log('looking for ', e.target)
+    console.log('submitted ', itemName, itemImage, itemCondition, itemDescription);
+    let itemObj = {name: itemName, thumbnail_url: itemImage, description: itemDescription, item_condition: itemCondition};
+    console.log('item object ', itemObj);
+    API.insertDevice(user.id, itemObj)
+      .then((res) => {
+        console.log('success adding an item')
+      }).catch((err) => {
+        console.log('error adding item was ', err);
+      })
+  };
+
+  const setCondition = (e) => {
+    console.log('e target val ', e.target.value);
+    setItemCondition(e.target.value);
+  }
+
   return (
     <Container1 sx={{ height: '100vh', bgcolor: '#CAF0F8' }}>
       <Button onClick={handleClick} >back</Button>
@@ -122,28 +145,29 @@ function AddItem({ setAddItem, addItem }) {
         <TextField1 onChange={(e) => setItemImage(e.target.value)} value={itemImage} variant="filled" />
         <SubTitle>Condition
       </SubTitle>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+      <FormControl sx={{ m: 1, minWidth: 120 }} size="small" onSubmit={onSubmit}>
       <InputLabel id="demo-select-small">Condition</InputLabel>
       <Select
         labelId="demo-select-small"
         id="demo-select-small"
-        value='none'
+        value={itemCondition}
+        onChange={(e) => setCondition(e)}
         label="Condition"
 
       >
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value="New">New</MenuItem>
+        <MenuItem value="Open Box">Open Box</MenuItem>
+        <MenuItem value="Like New">Like New</MenuItem>
+        <MenuItem value="Good">Good</MenuItem>
+        <MenuItem value="Fair">Fair</MenuItem>
+        <MenuItem value="Broken">Broken</MenuItem>
       </Select>
     </FormControl>
         <SubTitle>Description
         </SubTitle>
-        <TextArea1 rows='10' onChange={(e) => setItemDescription(e.target.value)}  value={itemDescription} variant="filled" />
+        <TextArea1 rows='10' onChange={(e) => setItemDescription(e.target.value)} value={itemDescription} variant="filled" />
         <Box2>
-        <SubmitButton >Submit</SubmitButton>
+        <SubmitButton onClick={(e) => onSubmit(e)}>Submit</SubmitButton>
         </Box2>
       </Box1>
     </Container1>

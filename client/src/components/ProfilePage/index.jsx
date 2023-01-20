@@ -6,8 +6,7 @@ import BookmarkedItems from './BookmarkedItems'
 import AddItem from './AddItem';
 import { styled } from '@mui/system';
 import axios from 'axios';
-///
-
+import SearchIcon from '@mui/icons-material/Search';
 
 const PictureContainer = styled('div')({
   backgroundColor: '#0077B6',
@@ -55,28 +54,28 @@ const avatarSX = {
 
 }
 
-function Profile({changeView, props}) {
-  const [addItem, setAddItem] = useState(true);
+function Profile({user, changeView, props}) {
+  const [addItem, setAddItem] = useState(false);
+
   const [userName, setUserName] = useState('')
   const [userImage, setUserImage] = useState('')
   const [userDescription, setUserDescription] = useState('')
-
+  const [itemsData, setItemsData] = useState([])
 // props.changeView
   useEffect(() => {
-    console.log('CURRENT USER', props.user)
-
-      setUserName(props.user.name)
-      setUserImage(props.user.thumbnail_url || 'https://viterbischool.usc.edu/wp-content/uploads/2020/05/Lily-Profile-Square.jpeg')
-      setUserDescription(props.user.description)
-    },[props])
+    // console.log('CURRENT USER', user)
+      setUserName(user.name)
+      setUserImage(user.thumbnail_url || 'https://pixabay.com/get/g1afe26f7edde7491e900b71f291b611f87cf6ae6829e31d2af7f30b0631e698b892d6bba3cfaedb1feb22d49b5fd43ce2ddd8f048c3806efe8a8ee2a9d0347c2c1d6696b5dd38af33fbc4ba7fdccd4f7_640.png')
+      setUserDescription(user.description)
+    },[user])
 
   //GET ITEMS FOR CURRENT USER
 
   useEffect(()=> {
-    axios.get('/items/user/3')
+    axios.get(`/items/user/${user.id}`)
     .then((res)=> {
       setItemsData(res.data)
-      console.log('ITEM DATA', res.data)
+      // console.log('ITEM DATA', res.data)
     })
   }, [user])
 
@@ -109,22 +108,17 @@ function Profile({changeView, props}) {
               </Box2>
             </Box1>
 
-
-            <ItemsForTrade user={props.user} itemsData={itemsData} setAddItem={setAddItem} addItem={addItem}  />
-            <PendingTrades  changeView={changeView} userData={props.user} />
-            <BookmarkedItems userData={{id: 1, thumbnail_url: userImage}} />
             <ItemsForTrade changeView={changeView} user={user} itemsData={itemsData} setAddItem={setAddItem} addItem={addItem}  />
-            <PendingTrades  changeView={changeView} userData={{id: 1, thumbnail_url: userImage}} />
-            <BookmarkedItems user={user} userData={{id: 1, thumbnail_url: userImage}} />
+            <PendingTrades  changeView={changeView} userData={user} />
+            <BookmarkedItems user={user} userData={user} changeView={changeView}/>
           </PictureContainer>
           )}
       {addItem
           && (
-            <AddItem setAddItem={setAddItem} addItem={addItem} />
+            <AddItem user={user} setAddItem={setAddItem} addItem={addItem} />
           )}
     </>
 
   );
 }
-
-export default Profile;
+export default Profile

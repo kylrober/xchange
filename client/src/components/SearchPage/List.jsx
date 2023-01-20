@@ -17,7 +17,6 @@ const Box1 = styled('div')({
   marginBottom: '35px',
   paddingBottom: '20px',
   width: '100%',
-
 });
 
 const Title = styled('div')({
@@ -27,8 +26,7 @@ const Title = styled('div')({
 
 })
 
-
-export default function List({ changeView, condition }) {
+export default function List({ changeView, condition, user }) {
 
   const [allItems, setAllItems] = React.useState([]);
   // const [allUsers, setAllUsers] = useState([]);
@@ -49,8 +47,6 @@ export default function List({ changeView, condition }) {
     //       console.log(error);
     //     });
   }, []);
-
-
   return (allItems &&
     <Box1>
       <Title sx={{ color: '#505050', }}>Results</Title>
@@ -58,14 +54,13 @@ export default function List({ changeView, condition }) {
         condition.length === 0
           ?
           allItems.map((item) => {
-            return <ItemCard item={item} changeView={changeView} />
+            return <ItemCard user={user} item={item} changeView={changeView} />
           })
           :
           allItems.map((item) => {
-            return condition === item.item_condition && <ItemCard item={item} changeView={changeView} />
+            return condition === item.item_condition && <ItemCard item={item} changeView={changeView} user={user}/>
           })
       }
     </Box1>
   );
 }
-

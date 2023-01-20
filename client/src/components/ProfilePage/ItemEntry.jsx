@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Box, Avatar } from '@mui/material/';
 import {styled} from '@mui/system'
 
@@ -8,9 +8,9 @@ const Box1 = styled('div')({
   display: 'flex',
   bgcolor: '#0077B6',
   height: '10vh',
-
   borderRadius: '20px',
-  width: '90%'
+  width: '90%',
+  marginTop: '10px'
 })
 const Box2 = styled('div')({
   flexGrow: 1,
@@ -18,15 +18,11 @@ const Box2 = styled('div')({
   backgroundColor: '#0077B6',
   borderRadius: '20px',
   paddingLeft: '20px',
-  paddingTop: '18px',
-  background: '#CAF0F8',
-  boxShadow: `inset 2px 2px 3px #a4c2c9,
-  inset -2px -2px 3px #f0ffff`,
-  // paddingTop: '5px',
-  // background: '#0077B68',
-  // boxShadow: `inset 6px 6px 6px #006093,
-  // inset -6px -6px 6px #008ed9`,
-  // fontSize:'smaller'
+  paddingTop: '5px',
+  background: '#0077B68',
+  boxShadow: `inset 6px 6px 6px #006093,
+  inset -6px -6px 6px #008ed9`,
+  fontSize:'smaller'
 
 })
 const TextArea1 = styled('textarea')({
@@ -38,11 +34,9 @@ const TextArea1 = styled('textarea')({
 })
 const avatarSX = {
   marginBottom:'10px',
-  // boxShadow: `-8px -8px 12px rgba(232,242,255,0.8),
-  // 8px 8px 12px rgba(0,0,0,0.25),
-  // boxShadow: `8px 8px 17px #006093,
-  // -8px -8px 17px #008ed9,
-  // inset -2px -2px 5px rgba(255,255,255,0.6),
+  boxShadow: `8px 8px 17px #006093,
+  -8px -8px 17px #008ed9,
+  inset -2px -2px 5px rgba(255,255,255,0.6),
   inset 2px 2px 4px rgba(0,0,0,0.3)`,
   marginTop: '5px',
   width: '75px',
@@ -82,12 +76,12 @@ const handleClick = () => {
       <Box sx={{
         display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignContent: 'center',
       }}>
-        <Avatar sx={avatarSX}/>
+        <Avatar src={itemImage} sx={avatarSX}/>
       </Box>
       <Box2>
-        <div> MacBook Pro</div>
-        <div>  Condition: Like New </div>
-        <div> Description: 5 years old, runs great. </div>
+        <div> {itemName}</div>
+        <div>  Condition: {itemCondition}</div>
+        <div> Description: {itemDescription} </div>
       </Box2>
 
     </Box1>
