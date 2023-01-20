@@ -1,0 +1,4 @@
+*.env
+bundle.js*
+.vscode/
+node_modules/
