@@ -53,7 +53,6 @@ const Box2 = styled("div")({
 export default function Register({ props: { setUser, setRegister } }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const data = {
       email: event.target.email.value,
       password: event.target.password.value,

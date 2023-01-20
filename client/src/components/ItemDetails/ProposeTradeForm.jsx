@@ -13,7 +13,7 @@ function ProposeTradeForm(props) {
   const [proposeTradeObj, setProposeTradeObj] = useState({});
 
   const Box1 = styled('div')({
-    backgroundColor: '#CAF0F8',
+    backgroundColor: '#0077B6',
     alignItems: 'center',
     flexWrap: 'wrap',
     display: 'flex',
@@ -31,13 +31,13 @@ function ProposeTradeForm(props) {
     boxShadow: `-3px -3px 3px rgba(232,242,255,0.8),
     5px 5px 10px rgba(0,0,0,0.25)`,
     borderRadius: '30px',
-    backgroundColor: '#CAF0F8',
-    border: '4px solid #CAF0F8',
+    backgroundColor: '#0077B6',
+    border: '4px solid #0077B6',
     color: '#505050',
   });
 
   const additionalUserItemsStyling = {
-    flexDirection: 'row' ,
+    flexDirection: 'column' ,
     justifyContent: 'center',
   }
 
@@ -64,6 +64,7 @@ function ProposeTradeForm(props) {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    fontSize: '45px'
   }
 
   const avatarSX = {
@@ -74,19 +75,18 @@ function ProposeTradeForm(props) {
     inset 2px 2px 4px rgba(0,0,0,0.3)`,
     width: '75px',
     height: '75px',
-    border: '4px solid #CAF0F8',
+    border: '4px solid #0077B6',
   }
 
   const iconButtonStyling = {
     boxShadow: `-3px -3px 3px rgba(232,242,255,0.8), 5px 5px 10px rgba(0,0,0,0.25)`,
     borderRadius: '50%',
-    fontSize: '40px',
+    fontSize: '45px',
   };
 
   useEffect(() => {
     getItemsFromUserID(props.currentUserId)
     .then((response) => {
-      console.log(response.data);
       setUserDevices(response.data)
       }).catch((error) => {
         console.log(error);
@@ -115,6 +115,8 @@ function ProposeTradeForm(props) {
 
   const onHomeButtonClick = (e) => {
     e.preventDefault();
+    props.setDisplayProposeTradeForm(false);
+    props.changeView('Profile', {});
   };
 
   const deviceMap = userDevices.map((device) => {
@@ -146,7 +148,9 @@ function ProposeTradeForm(props) {
         </Box1>
 
         <Box1 sx={additionalUserItemsStyling}>
-          <Typography sx={{margin: '10px'}}>Select a device to trade:</Typography>
+          <Box>
+            <Typography sx={{margin: '10px'}}>Select a device to trade:</Typography>
+          </Box>
           <Box>
             {deviceMap}
           </Box>
