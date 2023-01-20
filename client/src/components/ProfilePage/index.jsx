@@ -27,7 +27,6 @@ const Box1 = styled('div')({
   display: 'flex',
   flexDirection: 'column' ,
   justifyContent: 'center',
-
   marginBottom: '20px'
 });
 const Box2 = styled('div')({
@@ -38,15 +37,14 @@ const Box2 = styled('div')({
   flexDirection: 'column' ,
   justifyContent: 'center',
   textAlign: 'center',
-  color: '#505050',
+  color: '#CAF0F8',
+  marginTop: '10px'
 
 });
 const avatarSX = {
   marginBottom:'10px',
   boxShadow: `16px 16px 50px #00507a,
-  -16px -16px 50px #009ef2,
-  inset -2px -2px 5px rgba(255,255,255,0.6),
-  inset 2px 2px 4px rgba(0,0,0,0.3)`,
+  -16px -16px 50px #009ef2`,
   marginTop: '15px',
   width: '200px',
   height: '200px',
@@ -71,13 +69,11 @@ function Profile({user, changeView, props}) {
 
   //GET ITEMS FOR CURRENT USER
 
-  useEffect(()=> {
-    axios.get(`/items/user/${user.id}`)
-    .then((res)=> {
-      setItemsData(res.data)
-      // console.log('ITEM DATA', res.data)
-    })
-  }, [user])
+  useEffect(() => {
+    axios.get(`/items/user/${user.id}`).then((res) => {
+      setItemsData(res.data);
+    });
+  }, [addItem]);
 
   const handleSearch = () => {
    changeView('Search', {})
@@ -89,16 +85,18 @@ function Profile({user, changeView, props}) {
           && (
           <PictureContainer >
                    <SearchIcon onClick={handleSearch}sx={{
-  // boxShadow: `5px 5px 10px #9ab6bc,
-  // -5px -5px 10px #faffff`,
-  // borderRadius: '2000px',
-  // backgroundColor: '#CAF0F8',
-  // border: 'none',
-  // color: '#505050',
-  // marginTop: '15px',
-  // zIndex: 1000,
-  // width: '50px',
-  // height: '50px'
+    boxShadow: `-5px -5px 10px #00507a,
+    5px 5px 10px #009ef2`,
+  borderRadius: '2000px',
+  backgroundColor: '#0077B6',
+  border: 'none',
+  color: '#CAF0F8',
+  marginTop: '15px',
+  marginLeft: '10px',
+  zIndex: 1000,
+  width: '30px',
+  height: '30px',
+  padding: '10px'
 }}/>
             <Box1>
               <Avatar sx={avatarSX} src={userImage}/>

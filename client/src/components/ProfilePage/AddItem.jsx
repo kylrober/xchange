@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import * as API from '../../API';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Box1 = styled('div')({
   backgroundColor: '#CAF0F8',
@@ -24,7 +25,7 @@ const Box1 = styled('div')({
 
 });
 const Box2 = styled('div')({
-  backgroundColor: '#CAF0F8',
+  backgroundColor: '#0077B6',
   alignContent: 'center',
   flexWrap: 'wrap',
   display: 'flex',
@@ -32,7 +33,7 @@ const Box2 = styled('div')({
   justifyContent: 'center',
 });
 const Container1 = styled('div')({
-  backgroundColor: '#CAF0F8',
+  backgroundColor: '#0077B6',
   paddingTop: 0,
   paddingLeft: 0,
   paddingRight: 0,
@@ -54,6 +55,7 @@ const SubTitle = styled('div')({
   fontSize: 'medium',
 
 })
+
 const TextField1 = styled('input')({
   borderRadius: '5px',
   background: '#CAF0F8',
@@ -61,9 +63,11 @@ const TextField1 = styled('input')({
   inset -5px -5px 6px #f0ffff`,
   border: 'none',
   height: '40px',
-  width: '250px',
+  width: '85%',
+  marginBottom: '10px'
 
 })
+
 
 const Input = styled('input')({
   border: 'none',
@@ -72,12 +76,12 @@ const Input = styled('input')({
   readOnly: true,
 })
 const SubmitButton = styled('button')({
-  width: '80px',
-  height: '25px',
-  boxShadow: `5px 5px 10px #9ab6bc,
-  -5px -5px 10px #faffff`,
+  width: '120px',
+  height: '30px',
+  boxShadow: `6px 6px 12px #00507a,
+  -6px -6px 12px #009ef2`,
   borderRadius: '10px',
-  backgroundColor: '#CAF0F8',
+  backgroundColor: '#0077B6',
   border: 'none',
   color: '#505050',
   marginTop:'55px',
@@ -85,6 +89,7 @@ const SubmitButton = styled('button')({
 })
 const TextArea1 = styled('textarea')({
   borderRadius: '5px',
+  background: '#0077B6',
   background: '#CAF0F8',
   boxShadow: `inset 5px 5px 6px #a4c2c9,
   inset -5px -5px 6px #f0ffff`,
@@ -99,6 +104,10 @@ const TextArea1 = styled('textarea')({
 //   backgroundColor: '#CAF0F8',
 
 // })
+const Img= styled('img')({
+  width: '301px',
+  marginBottom: '50px'
+})
 
 function AddItem({ user, setAddItem, addItem }) {
   console.log('user is ', user);
@@ -132,11 +141,10 @@ function AddItem({ user, setAddItem, addItem }) {
   }
 
   return (
-    <Container1 sx={{ height: '100vh', bgcolor: '#CAF0F8' }}>
-      <Button onClick={handleClick} >back</Button>
-      <Title>ADD AND ITEM
-      </Title>
-      <Box1 sx={{ bgcolor: '#CAF0F8' }}>
+    <Container1 sx={{ height: '100vh', bgcolor: '#0077B6' }}>
+      <ArrowBackIcon sx={{}}onClick={handleClick} >back</ArrowBackIcon>
+      <Img src="https://i.ibb.co/5j91rR3/techxchange-500-150-px-350-150-px-350-100-px-1.png"/>
+      <Box1 sx={{ bgcolor: '#0077B6' }}>
       <SubTitle>Title
       </SubTitle>
         <TextField1 onChange={(e) => setItemName(e.target.value)} value={itemName} variant="filled" />
@@ -153,7 +161,7 @@ function AddItem({ user, setAddItem, addItem }) {
         value={itemCondition}
         onChange={(e) => setCondition(e)}
         label="Condition"
-
+        sx={{bgcolor: '#CAF0F8', width: '100%', margin: 0}}
       >
         <MenuItem value="New">New</MenuItem>
         <MenuItem value="Open Box">Open Box</MenuItem>

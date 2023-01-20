@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Button, IconButton, Avatar, Box, Typography, Container
+  Button, IconButton, Avatar, Box, Text1, Container
 } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import { Add, Home } from '@mui/icons-material';
@@ -28,12 +28,12 @@ function Item(props) {
   const Box1 = styled('div')({
     backgroundColor: '#0077B6',
     alignItems: 'center',
-    flexWrap: 'wrap',
     display: 'flex',
-    boxShadow: `-5px -5px 10px rgba(255,255,255,0.8),
-    5px 5px 10px rgba(0,0,0,0.25)`,
+    boxShadow: `-5px -5px 10px #00507a,
+    5px 5px 10px #009ef2`,
     borderRadius: '30px',
     marginBottom: '20px',
+    justifyContent: 'flex-start'
   });
 
   const ImgBox = styled('div')({
@@ -50,6 +50,17 @@ function Item(props) {
     padding: '5px'
   });
 
+  const Box2 = styled('div')({
+    backgroundColor: '#0077B6',
+    alignContent: 'center',
+    flexWrap: 'wrap',
+    display: 'flex',
+    flexDirection: 'column' ,
+    justifyContent: 'center',
+
+    marginBottom: '20px'
+  });
+
   const Image = styled('img')({
     height:'225px',
     width: '225px',
@@ -61,8 +72,8 @@ function Item(props) {
     bottom: '20px',
     width: '150px',
     height: '30px',
-    boxShadow: `-3px -3px 3px rgba(232,242,255,0.8),
-    5px 5px 10px rgba(0,0,0,0.25)`,
+    boxShadow: `-5px -5px 10px #00507a,
+    5px 5px 10px #009ef2`,
     borderRadius: '30px',
     backgroundColor: '#0077B6',
     border: '4px solid #0077B6',
@@ -101,22 +112,42 @@ function Item(props) {
 
   const avatarSX = {
     marginBottom:'10px',
-    boxShadow: `-8px -8px 12px rgba(232,242,255,0.8),
-    8px 8px 12px rgba(0,0,0,0.25),
-    inset -2px -2px 5px rgba(255,255,255,0.6),
-    inset 2px 2px 4px rgba(0,0,0,0.3)`,
+    boxShadow: `-5px -5px 10px #00507a,
+    5px 5px 10px #009ef2`,
     marginTop: '15px',
     width: '75px',
     height: '75px',
     border: '4px solid #0077B6',
     marginRight: '20px'
   }
+  const itemAvatarSX = {
+    marginBottom:'10px',
+    boxShadow: `-5px -5px 10px #00507a,
+    5px 5px 10px #009ef2`,
+    marginTop: '15px',
+    width: '200px',
+    height: '200px',
+    border: '7px solid #0077B6',
+
+  }
 
   const iconButtonStyling = {
-    boxShadow: `-3px -3px 3px rgba(232,242,255,0.8), 5px 5px 10px rgba(0,0,0,0.25)`,
-    borderRadius: '50%',
-    fontSize: '45px'
+
+      boxShadow: `-5px -5px 10px #00507a,
+      5px 5px 10px #009ef2`,
+    borderRadius: '2000px',
+    backgroundColor: '#0077B6',
+    border: 'none',
+    color: '#CAF0F8',
+    zIndex: 1000,
+    width: '30px',
+    height: '30px',
+    padding: '10px'
   };
+  const Text1 = styled('div')({
+    fontFamily: `'Inter', sans-serif`,
+    color: '#CAF0F8'
+  });
 
   useEffect(() => {
     API.getItemFromID(props.props.currentItemId)
@@ -172,7 +203,7 @@ function Item(props) {
   };
 
   return (
-    <Container>
+    <Container sx={{padding: 0}}>
       <Box>
         <ProposeTradeForm
           displayProposeTradeForm={displayProposeTradeForm}
@@ -195,34 +226,41 @@ function Item(props) {
             <Add sx={iconButtonStyling}/>
           </IconButton>
         </Box>
-
-        <ImgBox>
-          <Image src={itemPhoto} alt=""/>
-        </ImgBox>
-
+         <Box2>
+        <Avatar sx={itemAvatarSX} src={itemPhoto}/>
+        </Box2>
         <div style={additionalTitleStyling}>
-          <Typography variant='h4' >{itemTitle}</Typography>
+          <Text1  variant='h4' >{itemTitle}</Text1>
         </div>
 
 
         <Box1 sx={additionalUserInfoStyling}>
           <Avatar sx={avatarSX} alt="" src={profilePhotoThumbnail}/>
           <Box>
-            <Typography><u>Location</u>:</Typography>
-            <Typography>{currentUserLocation.city}, {currentUserLocation.state}</Typography>
+            <Text1><u>Location</u>:</Text1>
+            <Text1>{currentUserLocation.city}, {currentUserLocation.state}</Text1>
           </Box>
         </Box1>
 
         <Box1 sx={additionalItemInfoStyling}>
-          <Typography><u>Details</u>: {itemDetails}</Typography>
+          <Text1><u>Details</u>: {itemDetails}</Text1>
         </Box1>
 
         <Box1 sx={additionalItemInfoStyling}>
-          <Typography><u>Condition</u>: {itemCondition}</Typography>
+          <Text1><u>Condition</u>: {itemCondition}</Text1>
         </Box1>
 
         <Box sx={additionalButtonStyling}>
-          <ProposeTradeButton sx={userId === props.props.currentUserId ? {visibility: 'hidden'} : {visibility: 'visible'}} onClick={(e) => { onProposeTradeClick(e); }}>
+          <ProposeTradeButton sx={userId === props.currentUserId ? {visibility: 'hidden'} : {visibility: 'visible',
+  width: '120px',
+  height: '30px',
+  boxShadow: `6px 6px 12px #00507a,
+  -6px -6px 12px #009ef2`,
+  borderRadius: '10px',
+  backgroundColor: '#0077B6',
+  border: 'none',
+  color: '#CAF0F8',
+}} onClick={(e) => { onProposeTradeClick(e); }}>
             Propose Trade
           </ProposeTradeButton>
         </Box>

@@ -19,6 +19,7 @@ const Box1 = styled('div')({
   marginBottom: '35px',
   paddingBottom: '20px',
   width: '100%',
+  marginTop: '18px'
 });
 const Box2 = styled('div')({
   backgroundColor: '#CAF0F8',
@@ -43,7 +44,7 @@ const AddButton = styled('button')({
   borderRadius: '10px',
   backgroundColor: '#CAF0F8',
   border: 'none',
-  color: '#505050',
+  color: '#CAF0F8',
   marginTop: '15px'
 })
 const buttonSX = {
@@ -85,7 +86,7 @@ function BookmarkedItems ({user, changeView}) {
 
   return (
       <Box1 >
-        <Title sx={{color: '#505050',}}>Bookmarked Items</Title>
+        <Title sx={{color: '#CAF0F8',}}>Bookmarked Items</Title>
         {bookmarkedForUser.map((item, key) => <ItemEntry user={user} item={item} key={key} changeView={changeView}/>)
         }
         <Box2>

@@ -40,7 +40,7 @@ const AddButton = styled('button')({
   borderRadius: '10px',
   backgroundColor: '#0077B6',
   border: 'none',
-  color: '#505050',
+  color: '#CAF0F8',
   marginTop: '15px'
 })
 const buttonSX = {
@@ -58,7 +58,7 @@ function ItemsForTrade({ changeView, user, itemsData, setAddItem, addItem }) {
   console.log(itemsData)
   return (
       <Box1 >
-        <Title sx={{color: '#505050',}}>Items for Trade</Title>
+        <Title sx={{color: '#CAF0F8',}}>Items for Trade</Title>
         {itemsData.map((item, key) => <ItemEntry changeView={changeView} user={user} item={item} setAddItem={setAddItem} addItem={addItem} key={key} />)
         }
         <Box2>
